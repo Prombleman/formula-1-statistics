@@ -94,11 +94,12 @@ order by team_points desc;
 
 --first place in the race
 select
-racer_id,sum(race_points) as "Points"	,
-name_of_gp as "Grand Prix's name",
-first_name || ' ' || last_name as "Racer"
+sum(race_points) as "Points",
+racer_grandprix.racer_id,
+email as "Racer"
 from racer_grandprix  
 inner join racer r on racer_grandprix.racer_id = r.racer_id 
 inner join grandprix g on racer_grandprix.gp_id = g.gp_id 
-order by race_points;
+group by racer_grandprix.racer_id,email
+order by 1 desc;
 
