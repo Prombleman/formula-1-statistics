@@ -7,7 +7,7 @@ create table if not exists racer(
 	racer_id serial primary key,
 	email varchar(128) not null unique,
 	pass varchar(20) not null,
-	numb_of_races int not null,
+	numb_of_races_r int not null,
 	all_points_r int not null,
 	team_id int references team(team_id)
 );
@@ -18,6 +18,7 @@ create table if not exists team(
 	team_id serial primary key,
 	email varchar(128) not null unique,
 	pass varchar(20) not null,
+	numb_of_races_t int not null,
 	team_points int not null
 ); 
 
@@ -40,15 +41,15 @@ create table if not exists racer_grandprix(
 
 -- adding information to the data base 
 
-insert into team (team_id,email,pass,team_points)
-values (1,'Ferrari@example.com','Ferraripass','10158'),
-(2,'Mercedes@example.com','Mercedespass','6952'),
-(3,'RedBull@example.com','RedBullpass','6431'),
-(4,'AstonMartin@example.com','AstonMartinpass','155'),
-(5,'Williams@example.com','Williamspass','3599');
+insert into team (team_id,email,pass,numb_of_races_t,team_points)
+values (1,'Ferrari@example.com','Ferraripass',300,'10158'),
+(2,'Mercedes@example.com','Mercedespass',444,'6952'),
+(3,'RedBull@example.com','RedBullpass',123,'6431'),
+(4,'AstonMartin@example.com','AstonMartinpass',456,'155'),
+(5,'Williams@example.com','Williamspass',321,'3599');
 select * from team;
 
-insert into racer(racer_id,email,pass,numb_of_races,team_id,all_points_r)
+insert into racer(racer_id,email,pass,numb_of_races_r,team_id,all_points_r)
 values (1,'Maxv@example.com','MaxVpass','162',3,'2011'),
 (2,'CharlesL@example.com','CharlesLpass','103',1,'868'),
 (3,'LewisH@example.com','LewisHpass','310',2,'4405'),
@@ -82,10 +83,16 @@ from racer r
 order by all_points_r desc ;
 
 -- the most experienced racer 
-select numb_of_races as "Number of races",
+select numb_of_races_r as "Number of races",
 email as "Racer"
 from  racer r
-order by numb_of_races desc;
+order by numb_of_races_r desc;
+
+-- the most experienced team 
+select numb_of_races_t as "Number of races",
+email as "Team"
+from  team t 
+order by numb_of_races_t desc;
 
 --the best team 
 select email as "Team",team_points as "Points"
@@ -94,11 +101,12 @@ order by team_points desc;
 
 --first place in the race
 select
-racer_id,sum(race_points) as "Points"	,
-name_of_gp as "Grand Prix's name",
-first_name || ' ' || last_name as "Racer"
+sum(race_points) as "Points",
+racer_grandprix.racer_id,
+email as "Racer"
 from racer_grandprix  
 inner join racer r on racer_grandprix.racer_id = r.racer_id 
 inner join grandprix g on racer_grandprix.gp_id = g.gp_id 
-order by race_points;
+group by racer_grandprix.racer_id,email
+order by 1 desc;
 
