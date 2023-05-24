@@ -1,22 +1,20 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'welcomescreen.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from registration_form import Ui_RegistrationScreen
 
+class Ui_WelcomeScreen(object):
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(392, 394)
-        MainWindow.setMinimumSize(QtCore.QSize(392, 394))
-        MainWindow.setMaximumSize(QtCore.QSize(392, 394))
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+    def openWindow(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_RegistrationScreen()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def setupUi(self, WelcomeScreen):
+        WelcomeScreen.setObjectName("WelcomeScreen")
+        WelcomeScreen.resize(392, 394)
+        WelcomeScreen.setMinimumSize(QtCore.QSize(392, 394))
+        WelcomeScreen.setMaximumSize(QtCore.QSize(392, 394))
+        self.centralwidget = QtWidgets.QWidget(WelcomeScreen)
         self.centralwidget.setObjectName("centralwidget")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(120, 30, 161, 41))
@@ -64,6 +62,7 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.verticalLayout_2.addWidget(self.label_2)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.layoutWidget1)
+        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.verticalLayout_2.addWidget(self.lineEdit_2)
         self.layoutWidget2 = QtWidgets.QWidget(self.centralwidget)
@@ -84,41 +83,41 @@ class Ui_MainWindow(object):
         self.pushButton_3.setFont(font)
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout.addWidget(self.pushButton_3)
-        self.pushButton_4 = QtWidgets.QPushButton(self.layoutWidget2)
+        self.pushButton_4 = QtWidgets.QPushButton(self.layoutWidget2, clicked = lambda:self.openWindow())
         font = QtGui.QFont()
         font.setPointSize(13)
         self.pushButton_4.setFont(font)
         self.pushButton_4.setObjectName("pushButton_4")
         self.horizontalLayout.addWidget(self.pushButton_4)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        WelcomeScreen.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(WelcomeScreen)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 392, 22))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        WelcomeScreen.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(WelcomeScreen)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        WelcomeScreen.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(WelcomeScreen)
+        QtCore.QMetaObject.connectSlotsByName(WelcomeScreen)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, WelcomeScreen):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_4.setText(_translate("MainWindow", "F1 Statistics"))
-        self.label_5.setText(_translate("MainWindow", "WELCOME"))
-        self.label.setText(_translate("MainWindow", "Email:"))
-        self.label_2.setText(_translate("MainWindow", "Password:"))
-        self.pushButton_5.setText(_translate("MainWindow", "Pass"))
-        self.pushButton_3.setText(_translate("MainWindow", "Sign in"))
-        self.pushButton_4.setText(_translate("MainWindow", "Sign up"))
+        WelcomeScreen.setWindowTitle(_translate("WelcomeScreen", "MainWindow"))
+        self.label_4.setText(_translate("WelcomeScreen", "F1 Statistics"))
+        self.label_5.setText(_translate("WelcomeScreen", "WELCOME"))
+        self.label.setText(_translate("WelcomeScreen", "Email:"))
+        self.label_2.setText(_translate("WelcomeScreen", "Password:"))
+        self.pushButton_5.setText(_translate("WelcomeScreen", "Pass"))
+        self.pushButton_3.setText(_translate("WelcomeScreen", "Sign in"))
+        self.pushButton_4.setText(_translate("WelcomeScreen", "Sign up"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    WelcomeScreen = QtWidgets.QMainWindow()
+    ui = Ui_WelcomeScreen()
+    ui.setupUi(WelcomeScreen)
+    WelcomeScreen.show()
     sys.exit(app.exec_())
