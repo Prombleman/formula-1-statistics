@@ -1,15 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication,QFileSystemModel, QTreeView, QListView,QMenu,QMessageBox
-from welcome_screen import Ui_WelcomeScreen
+from login_screen import Ui_LoginScreen
 from registration_screen import Ui_RegistrationScreen
 
 class Ui_MainWindow(object):
 
-    def openWindowWelcome(self):
-        self.windowWelcome = QtWidgets.QMainWindow()
-        self.uiWelcome = Ui_WelcomeScreen()
-        self.uiWelcome.setupUi(self.windowWelcome)
-        self.windowWelcome.show()
+    def openWindowLogin(self):
+        self.windowLogin = QtWidgets.QMainWindow()
+        self.uiLogin = Ui_LoginScreen()
+        self.uiLogin.setupUi(self.windowLogin)
+        self.windowLogin.show()
 
     def openWindowRegistration(self):
         self.windowRegistration =  QtWidgets.QMainWindow()
@@ -128,7 +128,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openWindowWelcome())
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openWindowLogin())
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(False)
