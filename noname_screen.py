@@ -174,6 +174,40 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    #my code
+        self.actionClose.triggered.connect(self.close_app)    
+
+    # building the MessageBox
+    def MakeMessage(self,text,info,title,type,typeButton):
+        self.msg=QMessageBox()
+        if type == 'warn':
+            self.msg.setIcon(QMessageBox.Warning)
+        elif type == 'info':
+            self.msg.setIcon(QMessageBox.Information)
+        elif type == 'question':
+            self.msg.setIcon(QMessageBox.Question)
+        
+        self.msg.setText(text)
+        
+        self.msg.setInformativeText(info)
+
+        self.msg.setWindowTitle(title)
+
+        if typeButton == 'button_warn' or typeButton == 'button_info':
+            self.msg.setStandardButtons(QMessageBox.Ok)
+        elif typeButton == 'button_question':
+            self.msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+            self.msg.setDefaultButton(QMessageBox.No)
+
+        self.msg.show()
+        choice = self.msg.exec_()
+        if choice == QMessageBox.Yes:
+            sys.exit(app.exec_())
+
+    def close_app(self):
+        self.MakeMessage('Quit','Do you want to exit?','Exit?','question','button_question')
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
