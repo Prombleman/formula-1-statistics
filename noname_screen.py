@@ -1,3 +1,4 @@
+import psycopg2
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication,QFileSystemModel, QTreeView, QListView,QMenu,QMessageBox
 from login_screen import Ui_LoginScreen
@@ -175,6 +176,12 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     #my code
+
+
+
+
+
+
         self.actionClose.triggered.connect(self.close_app)    
 
     # building the MessageBox
